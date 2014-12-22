@@ -2,6 +2,7 @@ use std::io::process::Command;
 use std::io::{File,BufferedReader};
 use std::str::StrSplits;
 use std::collections::HashSet;
+use std::os;
 
 fn main(){
 
@@ -18,7 +19,16 @@ fn main(){
     let count: int = from_str( split.next().unwrap() ).unwrap(); // convert StrSplits iterator -> str -> int
     */
 
-    let mut reader = BufferedReader::new(File::open(&Path::new("words.txt")));
+    let args = os::args();
+    let path:Path;
+
+    if args.len()<2 {
+        path = Path::new("words.txt");
+    } else {
+        path = Path::new(format!("{}", args[1]));
+    }
+
+    let mut reader = BufferedReader::new(File::open(&path));
     let mut hashes: HashSet<String> = HashSet::new();
     let mut lineCount = 0i;
     for line in reader.lines() {
@@ -28,7 +38,9 @@ fn main(){
 
     println!("Number of words: {}", lineCount);
     println!("Number of hashes: {}", hashes.len());
-    println!("Number of collisions: {}", lineCount - ( hashes.len() as int));
+    let collisions: int = lineCount - ( hashes.len() as int);
+    println!("Number of collisions: {}", collisions);
+    println!("Collision rate: {}%", (collisions/lineCount)*100);
 
     let result = match Command::new("../target/pearson-64bit-hash").arg("asd").output() {
         Ok(output) => output,
