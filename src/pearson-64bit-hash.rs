@@ -34,10 +34,25 @@ fn create_table(){
 
 }
 
+fn generate_hash(string: String, hex: String) -> String{
+    let mut vec: Vec<uint> = Vec::new();
+    let bytes = string.as_bytes();
+    let mut hashed_array: [uint,..8] = [0u,..8];
+    unsafe {
+        for i in range(0u,8) {
+            let mut h: uint = T[((bytes[0] as uint)+i) % 256];
+            for j in range( 1, string.len() ) {
+                h = T[h ^ (bytes[j] as uint)];
+            }
+            hashed_array[i] = h;
+        }
+    }
+    hashed_array.to_string()
+}
 
 fn main() {
     create_table();
-    print_table();
-    let string: String = String::from_str("asd");
+    let string: String = String::from_str("a");
     let hex: String = String::from_str("sdf");
+    println!("{}",generate_hash(string, hex));
 }
