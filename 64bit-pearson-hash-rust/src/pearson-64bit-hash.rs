@@ -77,8 +77,6 @@ fn main() {
         return;
     }
     let string: String = format!("{}", args[1]);
-    println!("Input string: \t{}", string);
-
     let hashed: String = generate_hash(string);
-    println!("Hashed: \t{}", hashed);
+    println!("{}", hashed);
 }
