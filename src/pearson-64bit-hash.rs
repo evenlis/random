@@ -1,5 +1,6 @@
-//use std::rand::{task_rng, Rng};
 use std::string::String;
+use std::os;
+//use std::rand::{task_rng, Rng};
 
 //static mut T: [uint,..256] = [0,..256u];
 
@@ -70,7 +71,14 @@ fn generate_hash(string: String) -> String{
 }
 
 fn main() {
-    let string: String = String::from_str("asda");
+    let args = os::args();
+    if args.len() < 2 {
+        println!("Pass the string to be hashed as a command line argument");
+        return;
+    }
+    let string: String = format!("{}", args[1]);
+    println!("Input string: \t{}", string);
+
     let hashed: String = generate_hash(string);
-    println!("{}",hashed);
+    println!("Hashed: \t{}", hashed);
 }
