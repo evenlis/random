@@ -1,0 +1,7 @@
+[package]
+name = "pearson-64bit-hash"
+version = "0.0.1"
+authors = ["Even Lislebø <e.lislebo@gmail.com>"]
+
+[[bin]]
+name = "pearson-64bit-hash"
