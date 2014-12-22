@@ -1,8 +1,6 @@
 use std::rand::{task_rng, Rng};
 use std::num::Float;
 use std::string::String;
-use std::vec::Vec;
-use std::c_str::CString;
 
 static mut T: [uint,..256] = [0,..256u];
 
@@ -34,8 +32,7 @@ fn create_table(){
 
 }
 
-fn generate_hash(string: String, hex: String) -> String{
-    let mut vec: Vec<uint> = Vec::new();
+fn generate_hash(string: String) -> [uint,..8]{
     let bytes = string.as_bytes();
     let mut hashed_array: [uint,..8] = [0u,..8];
     unsafe {
@@ -47,12 +44,14 @@ fn generate_hash(string: String, hex: String) -> String{
             hashed_array[i] = h;
         }
     }
-    hashed_array.to_string()
+    hashed_array
 }
 
 fn main() {
     create_table();
-    let string: String = String::from_str("a");
-    let hex: String = String::from_str("sdf");
-    println!("{}",generate_hash(string, hex));
+    let string: String = String::from_str("asdasdasdsadasd");
+    let hashed: [uint,..8] = generate_hash(string);
+    for i in hashed.iter() {
+        print!("{:x}", *i as int);
+    }
 }
