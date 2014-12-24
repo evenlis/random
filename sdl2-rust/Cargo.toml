@@ -1,0 +1,10 @@
+[package]
+name = "sdl2-rust"
+version = "0.0.1"
+authors = ["Even Lislebø <e.lislebo@gmail.com>"]
+
+[[bin]]
+name = "main"
+
+[dependencies]
+sdl2 = "0.0.13"
