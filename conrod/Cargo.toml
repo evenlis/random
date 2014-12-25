@@ -1,0 +1,39 @@
+[package]
+name = "conrod"
+version = "0.0.1"
+authors = ["Even Lislebø <e.lislebo@gmail.com>"]
+
+[[bin]]
+name = "main"
+
+[lib]
+name = "conrod"
+path = "./src/lib.rs"
+
+[dependencies.pistoncore-input]
+
+git = "https://github.com/PistonDevelopers/input/"
+
+[dependencies.pistoncore-event]
+
+git = "https://github.com/PistonDevelopers/event"
+
+[dependencies.piston2d-graphics]
+
+git = "https://github.com/PistonDevelopers/graphics.git"
+
+[dependencies.piston2d-opengl_graphics]
+
+git = "https://github.com/PistonDevelopers/opengl_graphics.git"
+
+[dependencies.freetype-rs]
+
+git = "https://github.com/PistonDevelopers/freetype-rs.git"
+
+[dependencies.vecmath]
+
+git = "https://github.com/PistonDevelopers/vecmath.git"
+
+[dev-dependencies.pistoncore-sdl2_window]
+
+git = "https://github.com/PistonDevelopers/sdl2_window.git"
